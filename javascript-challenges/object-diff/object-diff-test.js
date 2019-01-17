@@ -22,7 +22,7 @@ test('it calculates the diff of shallow object properties', assert => {
   assert.end()
 })
 
-test.skip('it calculates the diff of nested object properties', assert => {
+test('it calculates the diff of nested object properties', assert => {
   const newCode = {
     apples: 3,
     oranges: {
@@ -48,7 +48,7 @@ test.skip('it calculates the diff of nested object properties', assert => {
   assert.end()
 })
 
-test.skip('it calculates the diff of doubly nested object properties', assert => {
+test('it calculates the diff of doubly nested object properties', assert => {
   const newCode = {
     apples: 3,
     oranges: {
@@ -84,7 +84,7 @@ test.skip('it calculates the diff of doubly nested object properties', assert =>
   assert.end()
 })
 
-test.skip('it calculates the diff of diference sized objects', assert => {
+test('it calculates the diff of diference sized objects', assert => {
   const newCode = {
     apples: 3,
     oranges: 5
@@ -110,6 +110,31 @@ test.skip('it calculates the diff of diference sized objects', assert => {
 
   assert.deepEqual(diff(newCode, oldCode), objectDiff)
   assert.equal(diff(newCode, oldCode).length, 4)
+
+  assert.end()
+})
+
+
+/* ---- */
+
+test('it calculates the diff of attribute object properties', assert => {
+  const oldCode = {
+    apples: 3,
+    oranges: 4
+  }
+
+  const newCode = {
+    apples: 3,
+    oranges: 5
+  }
+
+  const objectDiff = [
+    ['-', 'oranges', 4],
+    ['+', 'oranges', 5]
+  ]
+
+  assert.deepEqual(diff(newCode, oldCode), objectDiff)
+  assert.equal(diff(newCode, oldCode).length, 2)
 
   assert.end()
 })
