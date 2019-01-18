@@ -1,6 +1,8 @@
 class LinkedList {
   constructor() {
+
     this.head = null;
+    this.tail = null;
     this.length = 0;
 
     this.add = this.add.bind(this);
@@ -16,23 +18,42 @@ class LinkedList {
   /* ---- */
 
   // O(n)
+  // add(value) {
+  //   if (!this.head) {
+  //     this.head = this.createNode(value);
+  //     this.length++;
+
+  //     return this.head;
+  //   }
+
+  //   let node = this.head;
+  //   while (node.next) {
+  //     node = node.next;
+  //   }
+
+  //   node.next = this.createNode(value);
+  //   this.length++;
+
+  //   return node.next;
+  // }
+
+  // O(1)
   add(value) {
+    const node = this.createNode(value);
+
     if (!this.head) {
-      this.head = this.createNode(value);
+      this.head = node;
+      this.tail = node;
       this.length++;
 
       return this.head;
     }
 
-    let node = this.head;
-    while (node.next) {
-      node = node.next;
-    }
-
-    node.next = this.createNode(value);
+    this.tail.next = node;
+    this.tail = node;
     this.length++;
 
-    return node.next;
+    return this.tail;
   }
 
   print() {
@@ -65,8 +86,6 @@ list.add('potato3');
 list.add('potato4');
 list.add('potato5');
 // console.log(list.getLength());
+// console.log(list.getByIndex(5))
+
 // list.print();
-
-console.log(list.getByIndex(5))
-
-console.log(list.test())
