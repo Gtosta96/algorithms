@@ -1,14 +1,8 @@
 class LinkedList {
   constructor() {
-
     this.head = null;
     this.tail = null;
     this.length = 0;
-
-    this.add = this.add.bind(this);
-    this.print = this.print.bind(this);
-    this.getLength = this.getLength.bind(this);
-    this.getByIndex = this.getByIndex.bind(this);
   }
 
   createNode(value) {
@@ -56,8 +50,31 @@ class LinkedList {
     return this.tail;
   }
 
+  remove(node) {
+    if (this.length === 0) return;
+
+    if (this.head === node) {
+      this.head = node.next;
+      this.length--;
+
+      return;
+    }
+
+    let currentNode = this.head;
+    while(currentNode.next !== node) {
+      currentNode = currentNode.next;
+    }
+
+    currentNode.next = node.next;
+    this.length--;
+  }
+
   print() {
+    console.log(' ');
+    console.log('-----');
     console.log(this.head);
+    console.log('-----');
+    console.log(' ');
   }
 
   getLength() {
@@ -83,8 +100,18 @@ const list = new LinkedList();
 list.add('potato');
 list.add('potato2');
 list.add('potato3');
-list.add('potato4');
-list.add('potato5');
+
+const firstNode = list.getByIndex(0);
+const secondNode = list.getByIndex(1);
+const thirdNode = list.getByIndex(2);
+
+list.print();
+list.remove(thirdNode);
+list.print();
+
+// list.add('potato3');
+// list.add('potato4');
+// list.add('potato5');
 // console.log(list.getLength());
 // console.log(list.getByIndex(5))
 
