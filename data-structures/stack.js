@@ -1,4 +1,4 @@
-// FILO
+// FILO - First in - Last out
 
 class Stack {
   constructor() {
